@@ -21,7 +21,7 @@ spec:
                   - key: akuity.io/argo-cd-cluster-name
                     operator: NotIn
                     values: [in-cluster]
-                  - key: enable_minio-directpv
+                  - key: enable_minio_directpv
                     operator: In
                     values: ['true']
           - clusters:

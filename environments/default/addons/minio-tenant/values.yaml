@@ -1,1 +1,8 @@
 # Helm chart values
+tenants:
+  - name: minio-cluster
+    ingress:
+      enabled: true
+      ingressClassName: alb
+      path: /
+      tls: false
