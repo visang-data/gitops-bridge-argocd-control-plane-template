@@ -15,7 +15,7 @@ spec:
                 addonChart: minio-directpv
                 # anything not staging or prod use this version
                 addonChartVersion: v0.0.1
-                addonChartRepository: https://058264501230.dkr.ecr.ap-northeast-2.amazonaws.com
+                addonChartRepository: 058264501230.dkr.ecr.ap-northeast-2.amazonaws.com
               selector:
                 matchExpressions:
                   - key: akuity.io/argo-cd-cluster-name
