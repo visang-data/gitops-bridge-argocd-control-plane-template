@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: addons-secrets-store-csi-driver
+  name: addons-juicefs
 spec:
   syncPolicy:
     preserveResourcesOnDeletion: true
@@ -12,17 +12,16 @@ spec:
         generators:
           - clusters:
               values:
-                addonChart: secrets-store-csi-driver
-                addonChartNamespace: kube-system
+                addonChart: juicefs-csi-driver
                 # anything not staging or prod use this version
-                addonChartVersion: 1.4.1
-                addonChartRepository: https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
+                addonChartVersion: 0.23.1
+                addonChartRepository: https://juicedata.github.io/charts/
               selector:
                 matchExpressions:
                   - key: akuity.io/argo-cd-cluster-name
                     operator: NotIn
                     values: [in-cluster]
-                  - key: enable_secrets_store_csi_driver
+                  - key: enable_juicefs
                     operator: In
                     values: ['true']
           - clusters:
@@ -30,13 +29,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: 1.4.1
+                addonChartVersion: 0.23.1
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: 1.4.1
+                addonChartVersion: 0.23.1
   template:
     metadata:
       name: addon-{{name}}-{{values.addonChart}}
@@ -60,10 +59,11 @@ spec:
               - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
               - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
       destination:
-        namespace: '{{values.addonChartNamespace}}'
+        namespace: '{{values.addonChart}}'
         name: '{{name}}'
       syncPolicy:
-        automated: {}
+        automated:
+          prune: false
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true  # Big CRDs.
