@@ -23,3 +23,8 @@ server:
       value: "false"
     - name: NEW_VERSION_MODAL
       value: "false"
+  service:
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
