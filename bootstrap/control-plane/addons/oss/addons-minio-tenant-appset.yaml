@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: addons-minio-operator
+  name: addons-minio-tenant
 spec:
   syncPolicy:
     preserveResourcesOnDeletion: true
