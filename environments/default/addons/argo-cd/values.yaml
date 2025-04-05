@@ -72,6 +72,11 @@ configs:
         apiGroups:
         - "*"
     resource.customizations: |
+      storage.k8s.io/CSIDriver:
+        ignoreDifferences: |
+          jsonPointers:
+          - /spec/seLinuxMount
+          
       "awsblueprints.io/*":
         health.lua: |
           health_status = {
