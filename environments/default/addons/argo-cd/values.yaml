@@ -72,6 +72,11 @@ configs:
         apiGroups:
         - "*"
     resource.customizations: |
+      admissionregistration.k8s.io/MutatingWebhookConfiguration:
+        ignoreDifferences: |
+          jsonPointers:
+            - /webhooks/0/matchConditions
+            
       storage.k8s.io/CSIDriver:
         ignoreDifferences: |
           jsonPointers:
