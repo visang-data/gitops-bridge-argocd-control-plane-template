@@ -52,7 +52,6 @@ spec:
           targetRevision: 20.11.4
           chart: redis
           helm:
-            releaseName: redis
             parameters:
             - name: architecture
               value: standalone
