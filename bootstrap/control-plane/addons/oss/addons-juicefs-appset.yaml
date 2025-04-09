@@ -49,7 +49,7 @@ spec:
           targetRevision: '{{metadata.annotations.addons_repo_revision}}'
           ref: values
         - repoURL: 'https://charts.bitnami.com/bitnami'
-          targetRevision: 
+          targetRevision: 20.11.4
           chart: redis
           helm:
             releaseName: redis
