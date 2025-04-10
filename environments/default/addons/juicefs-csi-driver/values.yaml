@@ -11,7 +11,7 @@ storageClasses:
     storage: "s3"    # Object storage type (e.g. s3, gcs, oss, cos)
     accessKey: "minio"    # Access Key for object storage
     secretKey: "minio123"    # Secret Key for object storage
-    bucket: "http://minio-hl.tenant.svc.cluster.local:9000/my-minio-bucket"           # A bucket URL to store data
+    bucket: "http://myminio-hl.tenant.svc.cluster.local:9000/my-minio-bucket"           # A bucket URL to store data
     # Adjust Mount Pod timezone, defaults to UTC
     # envs: "{TZ: Asia/Shanghai}"
   mountPod:
