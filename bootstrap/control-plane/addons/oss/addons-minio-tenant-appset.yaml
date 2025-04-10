@@ -55,17 +55,6 @@ spec:
               - $values/{{metadata.annotations.addons_repo_basepath}}environments/default/addons/{{values.addonChart}}/values.yaml
               - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
               - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
-        - repoURL: 'https://charts.bitnami.com/bitnami'
-          targetRevision: 20.11.4
-          chart: redis
-          helm:
-            parameters:
-            - name: auth.enabled
-              value: "false"
-            - name: persistence.enabled
-              value: "true"
-            - name: persistence.storageClass
-              value: "directpv-min-io"
       destination:
         namespace: '{{values.addonChart}}'
         name: '{{name}}'
