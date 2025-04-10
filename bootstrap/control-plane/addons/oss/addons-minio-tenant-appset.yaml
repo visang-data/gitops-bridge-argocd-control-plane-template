@@ -55,23 +55,23 @@ spec:
               - $values/{{metadata.annotations.addons_repo_basepath}}environments/default/addons/{{values.addonChart}}/values.yaml
               - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
               - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
-        - repoURL: 'registry-1.docker.io/bitnamicharts'
-          targetRevision: 20.11.4
-          chart: redis
-          helm:
-            parameters:
-            - name: auth.enabled
-              value: "false"
-            - name: master.persistence.enabled
-              value: "true"
-            - name: master.persistence.storageClass
-              value: "directpv-min-io"
-            - name: replica.replicaCount
-              value: "1"
-            - name: replica.persistence.enabled
-              value: "true"
-            - name: replica.persistence.storageClass
-              value: "directpv-min-io"
+        # - repoURL: 'registry-1.docker.io/bitnamicharts'
+        #   targetRevision: 20.11.4
+        #   chart: redis
+        #   helm:
+        #     parameters:
+        #     - name: auth.enabled
+        #       value: "false"
+        #     - name: master.persistence.enabled
+        #       value: "true"
+        #     - name: master.persistence.storageClass
+        #       value: "directpv-min-io"
+        #     - name: replica.replicaCount
+        #       value: "1"
+        #     - name: replica.persistence.enabled
+        #       value: "true"
+        #     - name: replica.persistence.storageClass
+        #       value: "directpv-min-io"
   destination:
         namespace: '{{values.addonChart}}'
         name: '{{name}}'
