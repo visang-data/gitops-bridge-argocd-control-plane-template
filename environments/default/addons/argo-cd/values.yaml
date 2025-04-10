@@ -73,7 +73,7 @@ configs:
     #   username: aws
     bitnami:
       url: registry-1.docker.io/bitnamicharts
-      name: bitnami
+      name: redis
       enableOCI: 'true'
       type: helm
   cm:
