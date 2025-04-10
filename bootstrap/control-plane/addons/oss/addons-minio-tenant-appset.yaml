@@ -59,6 +59,7 @@ spec:
           targetRevision: 20.11.4
           chart: redis
           helm:
+            releaseName: redis
             parameters:
             - name: auth.enabled
               value: "false"
