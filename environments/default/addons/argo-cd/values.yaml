@@ -71,11 +71,11 @@ configs:
     #   enableOCI: 'true'
     #   password: {{ .Values.ecr.password }}
     #   username: aws
-    bitnami:
-      url: registry-1.docker.io/bitnamicharts
-      name: redis
-      enableOCI: 'true'
-      type: helm
+    # bitnami:
+    #   url: registry-1.docker.io/bitnamicharts
+    #   name: redis
+    #   enableOCI: 'true'
+    #   type: helm
   cm:
     application.resourceTrackingMethod: 'annotation' #use annotation for tracking required for Crossplane
     resource.exclusions: |
