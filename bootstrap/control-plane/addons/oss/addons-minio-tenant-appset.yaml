@@ -61,9 +61,9 @@ spec:
           helm:
             parameters:
             - name: auth.enabled
-              value: false
+              value: "false"
             - name: persistence.enabled
-              value: true
+              value: "true"
             - name: persistence.storageClass
               value: "directpv-min-io"
       destination:
