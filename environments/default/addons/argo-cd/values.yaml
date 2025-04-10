@@ -64,6 +64,18 @@ configs:
       type: helm
       url: public.ecr.aws
       enableOCI: 'true'
+    # aws-private-ecr:
+    #   url: 058264501230.dkr.ecr.ap-northeast-2.amazonaws.com
+    #   name: private-repo
+    #   type: helm
+    #   enableOCI: 'true'
+    #   password: {{ .Values.ecr.password }}
+    #   username: aws
+    bitnami:
+      url: registry-1.docker.io/bitnamicharts
+      name: bitnami
+      enableOCI: 'true'
+      type: helm
   cm:
     application.resourceTrackingMethod: 'annotation' #use annotation for tracking required for Crossplane
     resource.exclusions: |
