@@ -61,6 +61,8 @@ spec:
       destination:
         namespace: '{{values.addonChart}}'
         name: '{{name}}'
+      dependsOn:
+        - addon-{{name}}-minio-directpv
       syncPolicy:
         automated:
           prune: false
