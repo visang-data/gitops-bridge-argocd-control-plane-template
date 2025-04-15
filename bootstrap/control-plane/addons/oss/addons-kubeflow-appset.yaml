@@ -55,9 +55,6 @@ spec:
       destination:
         namespace: '{{values.addonChart}}'
         name: '{{name}}'
-      dependsOn:
-        - addon-{{name}}-juicefs-csi-driver
-        - addon-{{name}}-tenant
       syncPolicy:
         automated: {}
         syncOptions:

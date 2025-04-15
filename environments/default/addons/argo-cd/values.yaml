@@ -76,6 +76,8 @@ configs:
       name: redis
       enableOCI: 'true'
       type: helm
+  # params:
+  #   applicationsetcontroller.enable.progressive.syncs: true
   cm:
     application.resourceTrackingMethod: 'annotation' #use annotation for tracking required for Crossplane
     resource.exclusions: |

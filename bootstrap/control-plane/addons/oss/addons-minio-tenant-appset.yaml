@@ -76,8 +76,6 @@ spec:
               value: "true"
             - name: replica.persistence.storageClass
               value: "directpv-min-io"
-      dependsOn:
-        - addon-{{name}}-minio-directpv
       destination:
         namespace: '{{values.addonChart}}'
         name: '{{name}}'
