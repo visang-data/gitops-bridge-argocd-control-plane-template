@@ -1,4 +1,7 @@
 # Helm chart values
+# webhook:
+#   certManager:
+#     enabled: true
 storageClasses:
 - name: minio-sc
   enabled: true
@@ -8,10 +11,10 @@ storageClasses:
   backend:
     name: "my-minio-bucket"               # JuiceFS volume name
     metaurl: "redis://redis-master.tenant.svc.cluster.local/1"        # URL of metadata engine
-    storage: "s3"    # Object storage type (e.g. s3, gcs, oss, cos)
+    storage: "minio"    # Object storage type (e.g. s3, gcs, oss, cos)
     accessKey: "minio"    # Access Key for object storage
     secretKey: "minio123"    # Secret Key for object storage
-    bucket: "https://myminio-hl.tenant.svc.cluster.local:9000/my-minio-bucket"           # A bucket URL to store data
+    bucket: "http://myminio-hl.tenant.svc.cluster.local:9000/my-minio-bucket"           # A bucket URL to store data
     # Adjust Mount Pod timezone, defaults to UTC
     # envs: "{TZ: Asia/Shanghai}"
   mountPod:
