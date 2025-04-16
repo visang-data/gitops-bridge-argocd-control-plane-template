@@ -56,7 +56,9 @@ spec:
         namespace: '{{values.addonChart}}'
         name: '{{name}}'
       syncPolicy:
-        automated: {}
+        automated: 
+          prune: true
+          selfHeal: true
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true  # Big CRDs.
