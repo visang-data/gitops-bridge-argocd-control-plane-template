@@ -86,6 +86,35 @@ configs:
         apiGroups:
         - "*"
     resource.customizations: |
+      # Customizations for kubeflow
+      admissionregistration.k8s.io/ValidatingWebhookConfiguration:
+        syncOptions:
+        - SkipDryRunOnMissingResource=true
+        - ApplyOutOfSyncOnly=true
+        - sync-wave=10
+      apiextensions.k8s.io/CustomResourceDefinition:
+        syncOptions:
+        - ApplyOutOfSyncOnly=true
+        - sync-wave=1
+      rbac.authorization.k8s.io/ClusterRoleBinding:
+        syncOptions:
+        - sync-wave=2
+      rbac.authorization.k8s.io/RoleBinding:
+        syncOptions:
+        - sync-wave=2
+      v1/ServiceAccount:
+        syncOptions:
+        - sync-wave=1
+      v1/Namespace:
+        syncOptions:
+        - sync-wave=0
+      apps/Deployment:
+        syncOptions:
+        - sync-wave=5
+      apps/StatefulSet:
+        syncOptions:
+        - sync-wave=5
+
       admissionregistration.k8s.io/MutatingWebhookConfiguration:
         ignoreDifferences: |
           jsonPointers:
