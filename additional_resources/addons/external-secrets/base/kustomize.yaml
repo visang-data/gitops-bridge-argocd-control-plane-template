@@ -1,0 +1,4 @@
+resources:
+  - ecr-auth-generator.yaml
+  - external-secret-ecr-token.yaml
+  - external-secret-argocd-repo.yaml

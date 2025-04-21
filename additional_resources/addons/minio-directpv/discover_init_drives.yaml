@@ -1,0 +1,67 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: directpv-init-conditional
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      serviceAccountName: directpv-sa
+      containers:
+        - name: conditional-init
+          image: bitnami/kubectl
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -e
+              kubectl krew install directpv
+              
+              echo "🔍 Checking for uninitialized drives..."
+
+              UNINITIALIZED=$(kubectl get directpvdrives.directpv.min.io -A -o json \
+                | jq '.items[] | select(.status.initialized != true)' | wc -l)
+
+              if [ "$UNINITIALIZED" -eq "0" ]; then
+                echo "✅ All drives already initialized. Skipping init."
+                exit 0
+              fi
+
+              echo "🚨 Found uninitialized drives: $UNINITIALIZED"
+              echo "📦 Discovering drives..."
+
+              kubectl directpv discover --output yaml > /tmp/drives.yaml
+
+              echo "📄 Generating initrequest..."
+              python3 -c "
+              import yaml
+              from pathlib import Path
+              data = yaml.safe_load(Path('/tmp/drives.yaml').read_text())
+              devices = []
+              for node in data.get('nodes', []):
+                  for d in node.get('drives', []):
+                      if d.get('select') == 'yes':
+                          devices.append({'name': d['name'], 'id': d['id'], 'force': True})
+              init_request = {
+                'apiVersion': 'directpv.min.io/v1beta1',
+                'kind': 'DirectPVInitRequest',
+                'metadata': {'name': 'directpv-init-on-demand'},
+                'spec': {'devices': devices}
+              }
+              Path('/tmp/initrequest.yaml').write_text(yaml.dump(init_request))
+              "
+
+              echo "🚀 Applying DirectPVInitRequest..."
+              kubectl apply -f /tmp/initrequest.yaml
+          volumeMounts:
+            - name: kubeconfig
+              mountPath: /root/.kube
+      restartPolicy: Never
+      volumes:
+        - name: kubeconfig
+          projected:
+            sources:
+              - serviceAccountToken:
+                  path: token

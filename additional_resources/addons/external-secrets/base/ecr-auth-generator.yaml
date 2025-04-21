@@ -1,0 +1,17 @@
+apiVersion: generators.external-secrets.io/v1alpha1
+kind: ECRAuthorizationToken
+metadata:
+  name: ecr-auth-generator
+  namespace: argocd
+spec:
+  region: ap-northeast-2
+  auth:
+    secretRef:
+      accessKeyIDSecretRef:
+        name: in-cluster
+        namespace: argocd
+        key: aws_access_key_id
+      secretAccessKeySecretRef:
+        name: in-cluster
+        namespace: argocd
+        key: aws_secret_access_key

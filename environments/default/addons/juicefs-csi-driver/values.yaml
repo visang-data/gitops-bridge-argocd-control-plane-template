@@ -1,0 +1,29 @@
+# Helm chart values
+# webhook:
+#   certManager:
+#     enabled: true
+storageClasses:
+- name: minio-sc
+  enabled: true
+  reclaimPolicy: Retain
+  # JuiceFS Volume credentials
+  # If volume is already created in advance, then only name and metaurl is needed
+  backend:
+    name: "my-minio-bucket"               # JuiceFS volume name
+    metaurl: "redis://redis-master.tenant.svc.cluster.local/1"        # URL of metadata engine
+    storage: "minio"    # Object storage type (e.g. s3, gcs, oss, cos)
+    accessKey: "minio"    # Access Key for object storage
+    secretKey: "minio123"    # Secret Key for object storage
+    bucket: "http://myminio-hl.tenant.svc.cluster.local:9000/my-minio-bucket"           # A bucket URL to store data
+    # Adjust Mount Pod timezone, defaults to UTC
+    # envs: "{TZ: Asia/Shanghai}"
+  mountPod:
+    resources:                   # Resource limit/request for Mount Pod
+      requests:
+        cpu: "1"
+        memory: "1Gi"
+      limits:
+        cpu: "5"
+        memory: "5Gi"
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
