@@ -8,10 +8,10 @@ spec:
   auth:
     secretRef:
       accessKeyIDSecretRef:
-        name: in-cluster
+        name: aws-accesskey
         namespace: argocd
         key: aws_access_key_id
       secretAccessKeySecretRef:
-        name: in-cluster
+        name: aws-accesskey
         namespace: argocd
         key: aws_secret_access_key
