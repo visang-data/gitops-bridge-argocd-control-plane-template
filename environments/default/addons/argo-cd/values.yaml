@@ -86,7 +86,6 @@ configs:
         apiGroups:
         - "*"
     resource.customizations: |
-      # Customizations for kubeflow
       admissionregistration.k8s.io/ValidatingWebhookConfiguration:
         syncOptions:
         - SkipDryRunOnMissingResource=true
