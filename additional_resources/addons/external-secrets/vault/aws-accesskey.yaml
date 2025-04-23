@@ -9,7 +9,6 @@ spec:
     kind: ClusterSecretStore
   target:
     name: aws-accesskey  # 결과적으로 생성될 K8s Secret 이름
-    namespace: argocd
     creationPolicy: Owner
   data:
     - secretKey: aws_access_key_id
