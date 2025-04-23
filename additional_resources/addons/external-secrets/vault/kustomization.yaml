@@ -2,4 +2,3 @@ resources:
   - ../base
   - vault-secret-store.yaml
   - aws-accesskey.yaml
-  
