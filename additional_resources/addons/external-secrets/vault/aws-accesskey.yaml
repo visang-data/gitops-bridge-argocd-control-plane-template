@@ -1,0 +1,22 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: aws-accesskey
+  namespace: argocd
+spec:
+  secretStoreRef:
+    name: vault-store
+    kind: ClusterSecretStore
+  target:
+    name: aws-accesskey  # 결과적으로 생성될 K8s Secret 이름
+    namespace: argocd
+    creationPolicy: Owner
+  data:
+    - secretKey: aws_access_key_id
+      remoteRef:
+        key: aws/accesskey
+        property: aws_access_key_id
+    - secretKey: aws_secret_access_key
+      remoteRef:
+        key: aws/accesskey
+        property: aws_secret_access_key

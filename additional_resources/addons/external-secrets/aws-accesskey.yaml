@@ -1,0 +1,21 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: aws-accesskey
+  namespace: argocd
+spec:
+  secretStoreRef:
+    name: kubernetes-secret-store
+    kind: ClusterSecretStore
+  target:
+    name: aws-accesskey
+    creationPolicy: Owner
+  data:
+    - secretKey: aws_access_key_id
+      remoteRef:
+        key: in-cluster
+        property: aws_access_key_id
+    - secretKey: aws_secret_access_key
+      remoteRef:
+        key: in-cluster
+        property: aws_secret_access_key
