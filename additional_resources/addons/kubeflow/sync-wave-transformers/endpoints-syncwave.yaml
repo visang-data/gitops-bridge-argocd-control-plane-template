@@ -3,6 +3,8 @@ kind: PatchTransformer
 metadata:
   name: endpoints-syncwave
 patch: |-
+  apiVersion: v1
+  kind: Endpoints
   metadata:
     annotations:
       argocd.argoproj.io/sync-wave: "7"

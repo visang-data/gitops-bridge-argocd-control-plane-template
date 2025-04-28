@@ -3,6 +3,8 @@ kind: PatchTransformer
 metadata:
   name: cronjob-syncwave
 patch: |-
+  apiVersion: batch/v1
+  kind: CronJob
   metadata:
     annotations:
       argocd.argoproj.io/sync-wave: "9"

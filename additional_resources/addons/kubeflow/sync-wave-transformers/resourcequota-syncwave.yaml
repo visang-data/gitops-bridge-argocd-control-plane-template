@@ -3,6 +3,8 @@ kind: PatchTransformer
 metadata:
   name: resourcequota-syncwave
 patch: |-
+  apiVersion: v1
+  kind: ResourceQuota
   metadata:
     annotations:
       argocd.argoproj.io/sync-wave: "1"

@@ -3,6 +3,8 @@ kind: PatchTransformer
 metadata:
   name: configmap-syncwave
 patch: |-
+  apiVersion: v1
+  kind: ConfigMap
   metadata:
     annotations:
       argocd.argoproj.io/sync-wave: "7"
