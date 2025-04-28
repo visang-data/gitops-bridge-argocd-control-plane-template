@@ -1,26 +1,28 @@
 transformers:
-  - sync-wave-transformers/namespace-syncwave.yaml
-  - sync-wave-transformers/deployment-syncwave.yaml
-  - sync-wave-transformers/clusterrolebinding-syncwave.yaml
   - sync-wave-transformers/clusterrole-syncwave.yaml
-  - sync-wave-transformers/endpoints-syncwave.yaml
-  - sync-wave-transformers/rolebinding-syncwave.yaml
-  - sync-wave-transformers/role-syncwave.yaml
-  - sync-wave-transformers/daemonset-syncwave.yaml
-  - sync-wave-transformers/statefulset-syncwave.yaml
-  - sync-wave-transformers/replicaset-syncwave.yaml
+  - sync-wave-transformers/clusterrolebinding-syncwave.yaml
   - sync-wave-transformers/cronjob-syncwave.yaml
   - sync-wave-transformers/configmap-syncwave.yaml
-  - sync-wave-transformers/storageclass-syncwave.yaml
+  - sync-wave-transformers/customresourcedefinition-syncwave.yaml
+  - sync-wave-transformers/deployment-syncwave.yaml
+  - sync-wave-transformers/endpoints-syncwave.yaml
+  - sync-wave-transformers/limitrange-syncwave.yaml
+  - sync-wave-transformers/mutatingwebhookconfiguration-syncwave.yaml
+  - sync-wave-transformers/namespace-syncwave.yaml
+  - sync-wave-transformers/networkpolicy-syncwave.yaml
   - sync-wave-transformers/persistentvolumeclaim-syncwave.yaml
   - sync-wave-transformers/persistentvolume-syncwave.yaml
   - sync-wave-transformers/poddisruptionbudget-syncwave.yaml
   - sync-wave-transformers/podsecuritypolicy-syncwave.yaml
   - sync-wave-transformers/priorityclass-syncwave.yaml
+  - sync-wave-transformers/rolebinding-syncwave.yaml
+  - sync-wave-transformers/role-syncwave.yaml
+  - sync-wave-transformers/resourcequota-syncwave.yaml
+  - sync-wave-transformers/statefulset-syncwave.yaml
+  - sync-wave-transformers/storageclass-syncwave.yaml
   - sync-wave-transformers/secret-syncwave.yaml
   - sync-wave-transformers/service-syncwave.yaml
   - sync-wave-transformers/serviceaccount-syncwave.yaml
   - sync-wave-transformers/validatingwebhookconfiguration-syncwave.yaml
-  - sync-wave-transformers/resourcequota-syncwave.yaml
-  - sync-wave-transformers/mutatingwebhookconfiguration-syncwave.yaml
+
 
