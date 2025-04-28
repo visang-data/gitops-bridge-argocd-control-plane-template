@@ -6,6 +6,7 @@ patch: |-
   apiVersion: policy/v1
   kind: PodDisruptionBudget
   metadata:
+    name: "*"
     annotations:
       argocd.argoproj.io/sync-wave: "9"
 target:

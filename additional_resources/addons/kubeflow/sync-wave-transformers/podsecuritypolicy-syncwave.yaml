@@ -6,6 +6,7 @@ patch: |-
   apiVersion: policy/v1beta1
   kind: PodSecurityPolicy
   metadata:
+    name: "*"
     annotations:
       argocd.argoproj.io/sync-wave: "4"
 target:

@@ -6,6 +6,7 @@ patch: |-
   apiVersion: v1
   kind: PersistentVolumeClaim
   metadata:
+    name: "*"
     annotations:
       argocd.argoproj.io/sync-wave: "8"
 target:
