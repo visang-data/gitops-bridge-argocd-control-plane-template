@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: addons-kubeflow
+  name: addons-datadog-operator
 spec:
   syncPolicy:
     preserveResourcesOnDeletion: true
@@ -12,18 +12,17 @@ spec:
         generators:
           - clusters:
               values:
-                addonChart: kubeflow
-                kustomizePath: example
+                addonChart: datadog-operator
                 # addonChartNamespace: kube-system
                 # anything not staging or prod use this version
-                addonChartVersion: v1.10.0
-                addonChartRepository: https://github.com/kubeflow/manifests
+                addonChartVersion: 2.8.0
+                addonChartRepository: https://helm.datadoghq.com
               selector:
                 matchExpressions:
                   - key: akuity.io/argo-cd-cluster-name
                     operator: NotIn
                     values: [in-cluster]
-                  - key: enable_kubeflow
+                  - key: enable_datadog-operator
                     operator: In
                     values: ['true']
           - clusters:
@@ -31,35 +30,37 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: v1.10.0
+                addonChartVersion: 2.8.0
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: v1.10.0
+                addonChartVersion: 2.8.0
   template:
     metadata:
       name: addon-{{name}}-{{values.addonChart}}
-      finalizers:
-        - resources-finalizer.argocd.argoproj.io
     spec:
       project: default
       sources:
-        - path: '{{values.kustomizePath}}'
-          repoURL: '{{values.addonChartRepository}}'
-          targetRevision: '{{values.addonChartVersion}}'
-        # additional resources
         - repoURL: '{{metadata.annotations.addons_repo_url}}'
           targetRevision: '{{metadata.annotations.addons_repo_revision}}'
-          path: '{{metadata.annotations.addons_repo_basepath}}additional_resources/addons/{{values.addonChart}}'
+          ref: values
+        - chart: '{{values.addonChart}}'
+          repoURL: '{{values.addonChartRepository}}'
+          targetRevision: '{{values.addonChartVersion}}'
+          helm:
+            releaseName: '{{values.addonChart}}'
+            ignoreMissingValueFiles: true
+            valueFiles:
+              - $values/{{metadata.annotations.addons_repo_basepath}}environments/default/addons/{{values.addonChart}}/values.yaml
+              - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
+              - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
       destination:
         namespace: '{{values.addonChart}}'
         name: '{{name}}'
       syncPolicy:
-        automated: 
-          prune: true
-          selfHeal: true
+        automated: {}
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true  # Big CRDs.

@@ -1,0 +1,10 @@
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: limitrange-syncwave
+patch: |-
+  metadata:
+    annotations:
+      argocd.argoproj.io/sync-wave: "8"
+target:
+  kind: LimitRange

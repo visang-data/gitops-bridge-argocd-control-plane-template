@@ -1,0 +1,10 @@
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: role-syncwave
+patch: |-
+  metadata:
+    annotations:
+      argocd.argoproj.io/sync-wave: "5"
+target:
+  kind: Role

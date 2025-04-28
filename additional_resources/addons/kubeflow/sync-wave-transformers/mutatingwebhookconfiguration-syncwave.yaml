@@ -1,0 +1,10 @@
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: mutatingwebhookconfiguration-syncwave
+patch: |-
+  metadata:
+    annotations:
+      argocd.argoproj.io/sync-wave: "3"
+target:
+  kind: MutatingWebhookConfiguration

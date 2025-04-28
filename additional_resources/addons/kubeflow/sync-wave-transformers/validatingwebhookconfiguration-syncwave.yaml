@@ -1,0 +1,10 @@
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: validatingwebhookconfiguration-syncwave
+patch: |-
+  metadata:
+    annotations:
+      argocd.argoproj.io/sync-wave: "10"
+target:
+  kind: ValidatingWebhookConfiguration
