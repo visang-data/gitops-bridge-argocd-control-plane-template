@@ -22,7 +22,7 @@ spec:
                   - key: akuity.io/argo-cd-cluster-name
                     operator: NotIn
                     values: [in-cluster]
-                  - key: enable_datadog-operator
+                  - key: enable_datadog
                     operator: In
                     values: ['true']
           - clusters:
