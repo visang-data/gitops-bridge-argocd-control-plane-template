@@ -34,3 +34,7 @@ spec:
         - hostPath:
             path: /etc/passwd
           name: passwd
+
+  features:
+    processCollection:
+      enabled: true
