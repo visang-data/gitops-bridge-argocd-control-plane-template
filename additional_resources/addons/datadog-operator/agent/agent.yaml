@@ -19,14 +19,14 @@ spec:
     nodeAgent:
       image:
         name: gcr.io/datadoghq/agent:latest
-  env:
-    - name: DD_PROCESS_AGENT_ENABLED
-      value: "true"
-  volumeMounts:
-    - name: passwd
-      mountPath: /etc/passwd
-      readOnly: true
-  volumes:
-    - hostPath:
-        path: /etc/passwd
-      name: passwd
+      env:
+        - name: DD_PROCESS_AGENT_ENABLED
+          value: "true"
+      volumeMounts:
+        - name: passwd
+          mountPath: /etc/passwd
+          readOnly: true
+      volumes:
+        - hostPath:
+            path: /etc/passwd
+          name: passwd
