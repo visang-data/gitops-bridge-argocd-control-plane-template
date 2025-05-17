@@ -5,6 +5,7 @@ metadata:
 spec:
   global:
     site: datadoghq.com
+    hostname: visangai-platform
     credentials:
       apiSecret:
         secretName: datadog-secret
