@@ -4,6 +4,7 @@ metadata:
   name: datadog
 spec:
   global:
+    clusterName: local-cluster
     site: datadoghq.com
     kubelet:
       tlsVerify: false
@@ -36,5 +37,13 @@ spec:
           name: passwd
 
   features:
-    processCollection:
+    apm:
       enabled: true
+    admissionController:
+      enabled: true
+      agentCommunicationMode: service
+    npm:
+      enabled: true
+    logCollection:
+      enabled: true
+      containerCollectAll: true
