@@ -20,7 +20,7 @@ spec:
       image:
         name: gcr.io/datadoghq/agent:latest
       containers:
-        - name: agent
+        agent:
           env:
             - name: DD_PROCESS_AGENT_ENABLED
               value: "true"
