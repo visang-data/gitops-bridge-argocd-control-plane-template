@@ -57,7 +57,7 @@ spec:
         #   targetRevision: '{{metadata.annotations.addons_repo_revision}}'
         #   path: '{{metadata.annotations.addons_repo_basepath}}additional_resources/addons/{{values.addonChart}}'
       destination:
-        namespace: '{{values.addonChart}}'
+        # namespace: '{{values.addonChart}}'
         name: '{{name}}'
       syncPolicy:
         automated: 
