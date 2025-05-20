@@ -67,4 +67,4 @@ spec:
       - group: admissionregistration.k8s.io
         kind: MutatingWebhookConfiguration
         jsonPointers:
-          - /webhooks/0/matchConditions
+          - /webhooks/1/matchConditions
