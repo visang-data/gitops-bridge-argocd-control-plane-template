@@ -175,7 +175,15 @@ tenant:
       # The `affinity <https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/>`__ or anti-affinity settings to apply to Tenant pods.
       #
       # These settings determine the distribution of pods across worker nodes and can help prevent or allow colocating pods onto the same worker nodes.
-      affinity: { }
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: directpv
+                    operator: In
+                    values:
+                      - "true"
       ###
       # 
       # The `Requests or Limits <https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/>`__ for resources to associate to Tenant pods.
