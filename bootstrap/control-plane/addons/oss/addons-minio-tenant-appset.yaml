@@ -63,6 +63,17 @@ spec:
           chart: redis
           helm:
             releaseName: redis
+            values: |
+              master:
+                affinity:
+                  nodeAffinity:
+                    requiredDuringSchedulingIgnoredDuringExecution:
+                      nodeSelectorTerms:
+                        - matchExpressions:
+                            - key: directpv
+                              operator: In
+                              values:
+                                - "true"
             parameters:
             - name: auth.enabled
               value: "false"
