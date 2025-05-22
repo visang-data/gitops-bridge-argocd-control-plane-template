@@ -299,11 +299,11 @@ tenant:
   # 
   # .. code-block:: yaml
   #
-  #    - name: my-minio-bucket
+  #    - name: juicefs-bucket
   #      objectLock: false        # optional
   #      region: us-east-1        # optional
   buckets: 
-  - name: my-minio-bucket
+  - name: juicefs-bucket
     objectLock: false        # optional
     region: ap-northeast-2        # optional
 
