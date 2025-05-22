@@ -1,0 +1,4 @@
+storageClass:
+  create: true
+  name: directpv-min-io
+  reclaimPolicy: Retain
