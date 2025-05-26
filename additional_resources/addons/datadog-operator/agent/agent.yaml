@@ -22,21 +22,10 @@ spec:
     nodeAgent:
       image:
         name: gcr.io/datadoghq/agent:latest
-      containers:
-        agent:
-          env:
-            - name: DD_PROCESS_AGENT_ENABLED
-              value: "true"
-          volumeMounts:
-            - name: passwd
-              mountPath: /etc/passwd
-              readOnly: true
-      volumes:
-        - hostPath:
-            path: /etc/passwd
-          name: passwd
 
   features:
+    liveContainerCollection:
+      enabled: true
     apm:
       enabled: true
     admissionController:
