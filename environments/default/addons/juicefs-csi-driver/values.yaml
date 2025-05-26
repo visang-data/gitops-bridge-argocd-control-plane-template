@@ -6,6 +6,7 @@ storageClasses:
 - name: minio-sc
   enabled: true
   reclaimPolicy: Delete
+  allowVolumeExpansion: true
   # JuiceFS Volume credentials
   # If volume is already created in advance, then only name and metaurl is needed
   backend:
@@ -15,6 +16,7 @@ storageClasses:
     accessKey: "minio"    # Access Key for object storage
     secretKey: "minio123"    # Secret Key for object storage
     bucket: "http://myminio-hl.tenant.svc.cluster.local:9000/juicefs-bucket"           # A bucket URL to store data
+    pathPattern: "${.pvc.namespace}-${.pvc.name}"         # Path pattern for the volume
     # Adjust Mount Pod timezone, defaults to UTC
     # envs: "{TZ: Asia/Shanghai}"
   mountPod:
@@ -24,6 +26,6 @@ storageClasses:
         memory: "1Gi"
       limits:
         cpu: "5"
-        memory: "5Gi"
+        memory: "20Gi"
   annotations:
     storageclass.kubernetes.io/is-default-class: "true" 
