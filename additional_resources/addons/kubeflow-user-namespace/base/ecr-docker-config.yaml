@@ -2,6 +2,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: ecr-docker-config
+  namespace: ai-cell
 spec:
   refreshInterval: 6h
   secretStoreRef:

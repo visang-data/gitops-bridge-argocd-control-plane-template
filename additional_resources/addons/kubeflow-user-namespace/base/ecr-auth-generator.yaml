@@ -2,6 +2,7 @@ apiVersion: generators.external-secrets.io/v1alpha1
 kind: ECRAuthorizationToken
 metadata:
   name: ecr-auth-generator
+  namespace: ai-cell
 spec:
   region: ap-northeast-2
   auth:
