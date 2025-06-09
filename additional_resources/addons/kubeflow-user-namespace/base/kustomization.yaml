@@ -1,5 +1,5 @@
 resources:
 #   - ../base
-  - aws-accesskey.yaml
-  - ecr-auth-generator.yaml
+  - argocd-secret-store.yaml
+  - clusterrole.yaml
   - ecr-docker-config.yaml
