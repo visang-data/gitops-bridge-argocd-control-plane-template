@@ -1,0 +1,5 @@
+resources:
+#   - ../base
+  - aws-accesskey.yaml
+  - ecr-auth-generator.yaml
+  - ecr-docker-config.yaml

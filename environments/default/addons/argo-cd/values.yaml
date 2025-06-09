@@ -12,7 +12,7 @@ controller:
 repoServer:
   autoscaling:
     enabled: true
-    minReplicas: 1
+    minReplicas: 2
   resources: # Adjust based on your specific use case (required for HPA)
     requests:
       cpu: '100m'
@@ -37,7 +37,7 @@ applicationSet:
 server:
   autoscaling:
     enabled: true
-    minReplicas: 1
+    minReplicas: 2
   resources: # Adjust based on your specific use case (required for HPA)
     requests:
       cpu: '100m'
@@ -86,132 +86,6 @@ configs:
         apiGroups:
         - "*"
     resource.customizations: |
-      v1/Namespace:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "0"
-      v1/ResourceQuota:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "1"
-      storage.k8s.io/StorageClass:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "1"
-      apiextensions.k8s.io/CustomResourceDefinition:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "2"
-      admissionregistration.k8s.io/MutatingWebhookConfiguration:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "3"
-      v1/ServiceAccount:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "4"
-      policy/v1beta1/PodSecurityPolicy:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "4"
-      networking.k8s.io/NetworkPolicy:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "4"
-      rbac.authorization.k8s.io/Role:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "5"
-      rbac.authorization.k8s.io/ClusterRole:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "5"
-      rbac.authorization.k8s.io/RoleBinding:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "6"
-      rbac.authorization.k8s.io/ClusterRoleBinding:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "6"
-      v1/ConfigMap:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "7"
-      v1/Secret:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "7"
-      v1/Endpoints:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "7"
-      v1/Service:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "8"
-      v1/LimitRange:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "8"
-      scheduling.k8s.io/PriorityClass:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "8"
-      v1/PersistentVolume:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "8"
-      v1/PersistentVolumeClaim:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "8"
-      apps/Deployment:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "9"
-      apps/StatefulSet:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "9"
-      batch/CronJob:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "9"
-      policy/PodDisruptionBudget:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "9"
-      admissionregistration.k8s.io/ValidatingWebhookConfiguration:
-        patch: |
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "10"
-
       admissionregistration.k8s.io/MutatingWebhookConfiguration:
         ignoreDifferences: |
           jsonPointers:

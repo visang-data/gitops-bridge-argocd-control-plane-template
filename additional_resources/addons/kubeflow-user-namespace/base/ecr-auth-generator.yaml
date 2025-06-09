@@ -1,0 +1,14 @@
+apiVersion: generators.external-secrets.io/v1alpha1
+kind: ECRAuthorizationToken
+metadata:
+  name: ecr-auth-generator
+spec:
+  region: ap-northeast-2
+  auth:
+    secretRef:
+      accessKeyIDSecretRef:
+        name: aws-accesskey
+        key: aws_access_key_id
+      secretAccessKeySecretRef:
+        name: aws-accesskey
+        key: aws_secret_access_key

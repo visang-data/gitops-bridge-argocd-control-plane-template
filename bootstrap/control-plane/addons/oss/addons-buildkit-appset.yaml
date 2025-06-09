@@ -56,6 +56,10 @@ spec:
               - $values/{{metadata.annotations.addons_repo_basepath}}environments/default/addons/{{values.addonChart}}/values.yaml
               - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
               - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
+        # additional resources
+        # - repoURL: '{{metadata.annotations.addons_repo_url}}'
+        #   targetRevision: '{{metadata.annotations.addons_repo_revision}}'
+        #   path: '{{metadata.annotations.addons_repo_basepath}}additional_resources/addons/{{values.addonChart}}/base'
       destination:
         namespace: '{{values.addonChart}}'
         name: '{{name}}'
