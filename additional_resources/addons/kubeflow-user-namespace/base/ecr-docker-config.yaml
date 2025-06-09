@@ -4,10 +4,6 @@ metadata:
   name: ecr-docker-config
   namespace: ai-cell
 spec:
-  refreshInterval: 6h
-  secretStoreRef:
-    name: ecr-auth-generator
-    kind: ClusterSecretStore
   target:
     name: ecr-docker-config
     creationPolicy: Owner
@@ -17,13 +13,18 @@ spec:
         .dockerconfigjson: |
           {
             "auths": {
-              "{{ .proxy_endpoint | trimPrefix `https://` }}": {
-                "auth": "{{ .token }}"
+              "AWS.058264501230.dkr.ecr.ap-northeast-2.amazonaws.com": {
+                "username": "AWS",
+                "password": "{{ .password }}",
+                "auth": "{{ printf "%s:%s" "AWS" .password | b64enc }}"
               }
             }
           }
-  dataFrom:
-    - sourceRef:
-        generatorRef:
-          name: ecr-auth-generator
-          kind: ECRAuthorizationToken
+  secretStoreRef:
+    name: local-k8s-store         # 아래 참조 SecretStore 정의 필요
+    kind: SecretStore
+  data:
+    - secretKey: password
+      remoteRef:
+        key: ecr-token-generated
+        property: password
