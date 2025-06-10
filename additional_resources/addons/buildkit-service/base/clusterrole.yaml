@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: eso-k8s-read
+  name: eso-k8s-read-buildkit
   namespace: argocd
 rules:
   - apiGroups: [""]
@@ -12,12 +12,13 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: eso-k8s-read-bind
+  name: eso-k8s-read-bind-buildkit
   namespace: argocd
 subjects:
   - kind: ServiceAccount
     name: eso-k8s-reader
+    namespace: buildkit-service
 roleRef:
   kind: Role
-  name: eso-k8s-read
+  name: eso-k8s-read-buildkit
   apiGroup: rbac.authorization.k8s.io
