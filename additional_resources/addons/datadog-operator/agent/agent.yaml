@@ -20,6 +20,11 @@ spec:
       image:
         name: gcr.io/datadoghq/cluster-agent:latest
     nodeAgent:
+      env:
+      - name: DD_CONTAINER_EXCLUDE
+        value: "kube_namespace:.*"
+      - name: DD_CONTAINER_INCLUDE
+        value: "kube_namespace:argocd kube_namespace:kubeflow"
       image:
         name: gcr.io/datadoghq/agent:latest
 
