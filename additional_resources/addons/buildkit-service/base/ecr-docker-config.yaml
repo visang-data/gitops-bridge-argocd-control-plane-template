@@ -9,10 +9,10 @@ spec:
     template:
       type: kubernetes.io/dockerconfigjson
       data:
-        .dockerconfigjson: |
+        .dockerconfigjson: |-
           {
             "auths": {
-              "aws.058264501230.dkr.ecr.ap-northeast-2.amazonaws.com": {
+              "058264501230.dkr.ecr.ap-northeast-2.amazonaws.com": {
                 "username": "AWS",
                 "password": "{{ .password }}",
                 "auth": "{{ printf "%s:%s" "AWS" .password | b64enc }}"
