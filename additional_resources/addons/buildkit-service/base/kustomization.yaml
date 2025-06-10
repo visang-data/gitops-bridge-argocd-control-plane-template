@@ -1,0 +1,5 @@
+resources:
+#   - ../base
+  - argocd-secret-store.yaml
+  - clusterrole.yaml
+  - ecr-docker-config.yaml

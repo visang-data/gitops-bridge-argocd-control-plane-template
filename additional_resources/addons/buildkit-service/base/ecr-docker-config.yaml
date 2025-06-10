@@ -1,0 +1,29 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: ecr-docker-config
+spec:
+  target:
+    name: ecr-docker-config
+    creationPolicy: Owner
+    template:
+      type: kubernetes.io/dockerconfigjson
+      data:
+        .dockerconfigjson: |
+          {
+            "auths": {
+              "058264501230.dkr.ecr.ap-northeast-2.amazonaws.com": {
+                "username": "AWS",
+                "password": "{{ .password }}",
+                "auth": "{{ printf "%s:%s" "AWS" .password | b64enc }}"
+              }
+            }
+          }
+  secretStoreRef:
+    name: local-k8s-store         # 아래 참조 SecretStore 정의 필요
+    kind: SecretStore
+  data:
+    - secretKey: password
+      remoteRef:
+        key: ecr-token-generated
+        property: password
