@@ -125,8 +125,19 @@ data:
     {
         "nodeconfig": [
             {
-                "name": "aio-node67",
+                "name": "gpucom1",
                 "operatingmode": "hami-core",
+                "devicememoryscaling": 1.8,
+                "devicesplitcount": 10,
+                "migstrategy":"none",
+                "filterdevices": {
+                  "uuid": [],
+                  "index": []
+                }
+            },
+            {
+                "name": "gpucom4",
+                "operatingmode": "mig",
                 "devicememoryscaling": 1.8,
                 "devicesplitcount": 10,
                 "migstrategy":"none",

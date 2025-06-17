@@ -2,6 +2,6 @@
 driver:
   enabled: false
 devicePlugin:
-  enabled: false
+  enabled: true
 gfd:
   enabled: true
