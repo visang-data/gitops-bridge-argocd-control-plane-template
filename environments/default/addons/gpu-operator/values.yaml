@@ -1,3 +1,30 @@
 # Helm chart values
 driver:
   enabled: false
+devicePlugin:
+  image:
+    repository: volcanosh/volcano-device-plugin
+    tag: v1.1.0
+  config:
+    name: default-config
+    default: default-config
+  configMap:
+    create: true
+    default-config: |
+      version: v1
+      flags:
+        migStrategy: "none"
+        failOnInitError: true
+        nvidiaDriverRoot: "/"
+        plugin:
+          passDeviceSpecs: false
+          deviceListStrategy: envvar
+          deviceIDStrategy: uuid
+      resources:
+        gpus:
+        - pattern: "*A100*PCIe*"
+          name: a100-pcie
+        - pattern: "*A100*SXM*"
+          name: a100-sxm
+gfd:
+  enabled: true

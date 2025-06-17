@@ -34,6 +34,16 @@ data:
       deviceMemoryScaling: 1
       deviceCoreScaling: 1
       gpuMemoryFactor: 1
+      resources:
+        gpus:
+          - pattern: "*A100*PCIE*"
+            name: a100-pcie
+          - pattern: "*A100*SXM*"
+            name: a100-sxm
+          - pattern: "*L40*"
+            name: l40
+          - pattern: "*T4*"
+            name: t4
       knownMigGeometries:
       - models: [ "A30" ]
         allowedGeometries:
@@ -177,6 +187,8 @@ spec:
   updateStrategy:
     type: RollingUpdate
   template:
+    nodeSelector:
+        nvidia.com/gpu.present: "true"
     metadata:
       # This annotation is deprecated. Kept here for backward compatibility
       # See https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
