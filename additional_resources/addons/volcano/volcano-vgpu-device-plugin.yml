@@ -187,8 +187,6 @@ spec:
   updateStrategy:
     type: RollingUpdate
   template:
-    nodeSelector:
-        nvidia.com/gpu.present: "true"
     metadata:
       # This annotation is deprecated. Kept here for backward compatibility
       # See https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
@@ -197,6 +195,8 @@ spec:
       labels:
         name: volcano-device-plugin
     spec:
+      nodeSelector:
+        nvidia.com/gpu.present: "true"
       tolerations:
       # This toleration is deprecated. Kept here for backward compatibility
       # See https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
