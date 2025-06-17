@@ -56,6 +56,10 @@ spec:
               - $values/{{metadata.annotations.addons_repo_basepath}}environments/default/addons/{{values.addonChart}}/values.yaml
               - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
               - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
+        - path: 'volcano-vgpu-device-plugin.yml'
+          repoURL: 'https://github.com/Project-HAMi/volcano-vgpu-device-plugin'
+          targetRevision: 'main'
+
       destination:
         namespace: '{{values.addonChart}}'
         name: '{{name}}'
