@@ -222,7 +222,7 @@ spec:
           value: "utility"
         securityContext:
           allowPrivilegeEscalation: true
-          previleged: true
+          privileged: true
           capabilities:
             drop: ["ALL"]
             add: ["SYS_ADMIN"]
