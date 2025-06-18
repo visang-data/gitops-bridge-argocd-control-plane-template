@@ -1,6 +1,6 @@
 # Helm chart values
 driver:
-  enabled: false
+  enabled: true
 devicePlugin:
   enabled: true
 gfd:
