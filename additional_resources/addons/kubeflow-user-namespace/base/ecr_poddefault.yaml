@@ -1,0 +1,12 @@
+apiVersion: kubeflow.org/v1alpha1
+kind: PodDefault
+metadata:
+  name: ecr-image-pull-secret
+  namespace: ai-cell
+spec:
+  desc: Allow access to a private registry
+  imagePullSecrets:
+  - name: ecr-docker-config
+  selector:
+    matchLabels:
+      ecr-image-pull-secret: "true"
