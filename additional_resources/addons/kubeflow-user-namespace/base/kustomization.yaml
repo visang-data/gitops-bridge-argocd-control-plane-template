@@ -3,3 +3,4 @@ resources:
   - argocd-secret-store.yaml
   - clusterrole.yaml
   - ecr-docker-config.yaml
+  - ecr_poddefault.yaml
