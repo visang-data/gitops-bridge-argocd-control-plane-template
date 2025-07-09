@@ -2,9 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: datadog-integrations-config
-  namespace: datadog
+  namespace: datadog-operator
 data:
-  # Redis integration
+  # vllm integration
   vllm.yaml: |
     init_config:
       timeout: 10
