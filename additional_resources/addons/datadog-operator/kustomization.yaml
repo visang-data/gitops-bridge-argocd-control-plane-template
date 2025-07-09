@@ -13,5 +13,5 @@ patches:
       - op: add
         path: /spec/override/nodeAgent/extraConfd
         value:
-          configDataMap:
+          configMap:
             name: datadog-integrations-config
