@@ -5,3 +5,22 @@ devicePlugin:
   enabled: true
 gfd:
   enabled: true
+dcgmExporter:
+  config:
+    name: metrics-config
+  env:
+  - name: DCGM_EXPORTER_COLLECTORS
+    value: /etc/dcgm-exporter/dcgm-metrics.csv
+# Adding Datadog autodiscovery V2 annotations
+daemonsets:
+  annotations:
+    ad.datadoghq.com/nvidia-dcgm-exporter.checks: |-
+      {
+        "dcgm": {
+          "instances": [
+            {
+              "openmetrics_endpoint": "http://%%host%%:9400/metrics"
+            }
+          ]
+        }
+      }

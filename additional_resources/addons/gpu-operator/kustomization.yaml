@@ -1,0 +1,2 @@
+resources:
+  - dcgm-exporter/metrics-configmap.yaml

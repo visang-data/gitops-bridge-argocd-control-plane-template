@@ -15,3 +15,13 @@ data:
           - env:prod
           - team:mlops
           - app:vllm-inference-server-qwen
+  
+  dcgm.yaml: |
+    init_config: {}
+    instances:
+      - openmetrics_endpoint: http://nvidia-dcgm-exporter.gpu-operator.svc.cluster.local:9400/metrics
+        service: nvidia-dcgm-exporter
+        tags:
+          - env:prod
+          - team:mlops
+          - app:nvidia-dcgm-exporter

@@ -63,6 +63,10 @@ spec:
             values: |
               operator:
                 defaultRuntime: containerd
+        ## Additional resources for GPU Operator
+        - repoURL: '{{metadata.annotations.addons_repo_url}}'
+          targetRevision: '{{metadata.annotations.addons_repo_revision}}'
+          path: '{{metadata.annotations.addons_repo_basepath}}additional_resources/addons/{{values.addonChart}}'
       destination:
         namespace: '{{values.addonChart}}'
         name: '{{name}}'
