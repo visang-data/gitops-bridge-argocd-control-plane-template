@@ -24,7 +24,7 @@ spec:
       - name: DD_CONTAINER_EXCLUDE
         value: "kube_namespace:.*"
       - name: DD_CONTAINER_INCLUDE
-        value: "kube_namespace:argocd kube_namespace:kubeflow kube_namespace:gpu-operator"
+        value: "kube_namespace:argocd kube_namespace:kubeflow kube_namespace:gpu-operator kube_namespace:vllm-prod"
       image:
         name: gcr.io/datadoghq/agent:latest
 
