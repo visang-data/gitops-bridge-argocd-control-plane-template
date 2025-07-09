@@ -58,7 +58,7 @@ spec:
               - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
         - repoURL: '{{metadata.annotations.addons_repo_url}}'
           targetRevision: '{{metadata.annotations.addons_repo_revision}}'
-          path: '{{metadata.annotations.addons_repo_basepath}}additional_resources/addons/{{values.addonChart}}/agent'
+          path: '{{metadata.annotations.addons_repo_basepath}}additional_resources/addons/{{values.addonChart}}'
       destination:
         namespace: '{{values.addonChart}}'
         name: '{{name}}'

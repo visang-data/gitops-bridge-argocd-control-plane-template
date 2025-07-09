@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: datadog-integrations-config
+  namespace: datadog
+data:
+  # Redis integration
+  vllm.yaml: |
+    init_config:
+      timeout: 10
+    instances:
+      - openmetrics_endpoint: http://vllm-inference-server-qwen.vllm-prod.svc.cluster.local:8000/metrics
+        service: vllm-inference-server-qwen
+        tags:
+          - env:prod
+          - team:mlops
+          - app:vllm-inference-server-qwen
