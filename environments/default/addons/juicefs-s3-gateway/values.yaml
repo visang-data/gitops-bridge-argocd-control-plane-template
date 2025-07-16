@@ -1,3 +1,12 @@
+service:
+  type: NodePort
+  ports:
+    - name: http
+      nodePort: 31129
+      port: 9000
+      protocol: TCP
+      targetPort: 9000
+
 secret:
   # If volume is already created in advance, then only name and metaurl is needed
   name: "juicefs-bucket"
