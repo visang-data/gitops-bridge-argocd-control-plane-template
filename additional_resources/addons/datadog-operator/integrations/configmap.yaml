@@ -25,3 +25,32 @@ data:
           - env:prod
           - team:mlops
           - app:nvidia-dcgm-exporter
+
+  argocd.yaml: |
+    init_config: {}
+    instances:
+      - openmetrics_endpoint: http://argo-cd-argocd-application-controller-metrics.argocd.svc.cluster.local:8082/metrics
+        service: argo-cd-argocd-application-controller-metrics
+        tags:
+          - env:prod
+          - team:mlops
+          - app:application-controller
+      - openmetrics_endpoint: http://argo-cd-argocd-applicationset-controller-metrics.argocd.svc.cluster.local:8080/metrics
+        service: argo-cd-argocd-applicationset-controller-metrics
+        tags:
+          - env:prod
+          - team:mlops
+          - app:applicationset-controller
+      - openmetrics_endpoint: http://argo-cd-argocd-repo-server-metrics.argocd.svc.cluster.local:8080/metrics
+        service: argo-cd-argocd-repo-server-metrics
+        tags:
+          - env:prod
+          - team:mlops
+          - app:repo-server
+      - openmetrics_endpoint: http://argo-cd-argocd-server-metrics.argocd.svc.cluster.local:8083/metrics
+        service: argo-cd-argocd-server-metrics
+        tags:
+          - env:prod
+          - team:mlops
+          - app:server
+
