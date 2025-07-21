@@ -44,6 +44,23 @@ data:
           - env:prod
 
         min_collection_interval: 30
+
+  istio.yaml: |
+    init_config:
+      service: istio
+
+    instances:
+      - use_openmetrics: true
+
+        istiod_endpoint: http://istiod.istio-system.svc.cluster.local:15014/metrics
+        tag_by_endpoint: true
+
+        tags:
+          - service:istio
+          - team:platform
+          - env:prod
+
+        min_collection_interval: 30
   
   kyverno.yaml: |
     init_config:
