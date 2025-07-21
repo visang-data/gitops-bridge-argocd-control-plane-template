@@ -44,3 +44,36 @@ data:
           - env:prod
 
         min_collection_interval: 30
+  
+  kyverno.yaml: |
+    init_config:
+      service: kyverno
+
+    instances:
+      - openmetrics_endpoint: http://kyverno-svc-metrics.kyverno.svc.cluster.local:8000/metrics
+        service: kyverno-svc-metrics
+        tags:
+          - service:kyverno
+          - team:mlops
+          - env:prod
+      
+      - openmetrics_endpoint: http://kyverno-reports-controller-metrics.kyverno.svc.cluster.local:8000/metrics
+        service: kyverno-reports-controller-metrics
+        tags:
+          - service:kyverno
+          - team:mlops
+          - env:prod
+      
+      - openmetrics_endpoint: http://kyverno-background-controller-metrics.kyverno.svc.cluster.local:8000/metrics
+        service: kyverno-background-controller-metrics
+        tags:
+          - service:kyverno
+          - team:mlops
+          - env:prod
+      
+      - openmetrics_endpoint: http://kyverno-cleanup-controller-metrics.kyverno.svc.cluster.local:8000/metrics
+        service: kyverno-cleanup-controller-metrics
+        tags:
+          - service:kyverno
+          - team:mlops
+          - env:prod
