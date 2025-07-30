@@ -50,8 +50,8 @@ data:
       service: istio
 
     instances:
+      - openmetrics_endpoint: localhost:15090/stats/prometheus
       - use_openmetrics: true
-
         istiod_endpoint: http://istiod.istio-system.svc.cluster.local:15014/metrics
         tag_by_endpoint: true
 
