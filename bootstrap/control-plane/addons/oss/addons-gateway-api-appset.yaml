@@ -12,11 +12,8 @@ spec:
         generators:
           - clusters:
               values:
-                addonChart: base
-                # anything not staging or prod use this version
-                addonChartVersion: 1.26.0
-                addonChartRepository: https://istio-release.storage.googleapis.com/charts
-                addonChartValueDirName: gateway-api
+                addonChart: gateway-api
+                addonChartVersion: main
               selector:
                 matchExpressions:
                   - key: akuity.io/argo-cd-cluster-name
@@ -30,34 +27,27 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: 1.26.0
+                addonChartVersion: main
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: 1.26.0
+                addonChartVersion: main
   template:
     metadata:
       name: addon-{{name}}-{{values.addonChart}}
     spec:
       project: default
       sources:
-        - repoURL: '{{metadata.annotations.addons_repo_url}}'
-          targetRevision: '{{metadata.annotations.addons_repo_revision}}'
-          ref: values
-        - chart: '{{values.addonChart}}'
-          repoURL: '{{values.addonChartRepository}}'
-          targetRevision: '{{values.addonChartVersion}}'
-          helm:
-            releaseName: '{{values.addonChart}}'
-            ignoreMissingValueFiles: true
-            valueFiles:
-              - $values/{{metadata.annotations.addons_repo_basepath}}environments/default/addons/{{values.addonChartValueDirName}}/values.yaml
-              - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChartValueDirName}}/values.yaml
-              - $values/{{metadata.annotations.addons_repo_basepath}}environments/clusters/{{metadata.annotations.cluster_name}}/addons/{{values.addonChartValueDirName}}/values.yaml
+        sources:
+        - repoURL: https://github.com/kubernetes-sigs/gateway-api/
+          targetRevision: main
+          path: releases/download/v1.3.0
+          directory:
+            recurse: false
       destination:
-        namespace: istio-system
+        namespace: gateway-api
         name: '{{name}}'
       syncPolicy:
         automated: {}
