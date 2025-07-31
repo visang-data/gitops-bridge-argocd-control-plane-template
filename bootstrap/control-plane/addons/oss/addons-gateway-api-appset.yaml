@@ -40,12 +40,11 @@ spec:
     spec:
       project: default
       sources:
-        sources:
-        - repoURL: https://github.com/kubernetes-sigs/gateway-api/
-          targetRevision: main
-          path: releases/download/v1.3.0
-          directory:
-            recurse: false
+      - repoURL: https://github.com/kubernetes-sigs/gateway-api/
+        targetRevision: main
+        path: releases/download/v1.3.0
+        directory:
+          recurse: false
       destination:
         namespace: gateway-api
         name: '{{name}}'
